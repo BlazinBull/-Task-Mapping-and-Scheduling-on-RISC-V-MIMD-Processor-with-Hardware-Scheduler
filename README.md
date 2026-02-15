@@ -43,47 +43,7 @@ This project implements a **single-core RISC-V processor** with advanced multith
 The processor employs a **Multipipelined Register Architecture (MMRA)** where instead of a single set of registers and program counter, multiple sets exist simultaneously. This allows the hardware scheduler to switch between different tasks (threads) instantaneously without memory-based context saving.
 
 ### System-Level Block Diagram
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                         Top Module                               │
-│  ┌──────────────┐         ┌─────────────────┐                  │
-│  │   MMIO       │────────▶│  nHSE           │                  │
-│  │   Config     │         │  (Hardware      │                  │
-│  └──────────────┘         │   Scheduler)    │                  │
-│         │                 └────────┬────────┘                  │
-│         │                          │                            │
-│         │         ┌────────────────┼────────────────┐          │
-│         │         │                │                │          │
-│         ▼         ▼                ▼                ▼          │
-│  ┌──────────────────────────────────────────────────────┐     │
-│  │              Simple Core                             │     │
-│  │  ┌──────────────┐  ┌──────────┐  ┌──────────────┐  │     │
-│  │  │ Control Unit │  │   ALU    │  │    Event     │  │     │
-│  │  │  (Decoder)   │  │          │  │  Generator   │──┼─────┤
-│  │  └──────────────┘  └──────────┘  └──────────────┘  │     │
-│  │         │                 │                         │     │
-│  └─────────┼─────────────────┼─────────────────────────┘     │
-│            │                 │                               │
-│            ▼                 ▼                               │
-│  ┌─────────────────┐  ┌──────────────┐                      │
-│  │  Banked         │  │   Banked     │  ◄─ Thread Selector  │
-│  │  Registers      │  │     PCs      │                      │
-│  │  (Multiple Sets)│  │ (Thread 0-3) │                      │
-│  └─────────────────┘  └──────────────┘                      │
-│            │                 │                               │
-│            ▼                 ▼                               │
-│  ┌──────────────────────────────────────────┐              │
-│  │              IMEM (Shared)               │              │
-│  │    Instruction Memory (Dual-Port BRAM)   │              │
-│  └──────────────────────────────────────────┘              │
-│            │                                                 │
-│            ▼                                                 │
-│  ┌──────────────────────────────────────────┐              │
-│  │              DMEM                        │              │
-│  │         Data Memory                      │              │
-│  └──────────────────────────────────────────┘              │
-└─────────────────────────────────────────────────────────────┘
-```
+![riscv_block_diagram](https://github.com/user-attachments/assets/a877a80d-b94f-482d-b984-1d0504e3a984)
 
 **Key Components:**
 
@@ -450,58 +410,12 @@ This processor architecture is optimized for:
 
 ---
 
-## Contributing
-
-Contributions are welcome! To contribute:
-
-1. **Fork the Repository**
-```bash
-   git fork https://github.com/yourusername/riscv-single-core-scheduler.git
-```
-
-2. **Create a Feature Branch**
-```bash
-   git checkout -b feature/YourFeatureName
-```
-
-3. **Commit Your Changes**
-```bash
-   git commit -m "Add YourFeatureName: brief description"
-```
-
-4. **Push to Branch**
-```bash
-   git push origin feature/YourFeatureName
-```
-
-5. **Open a Pull Request**
-   - Provide clear description of changes
-   - Reference any related issues
-   - Include test results or simulation waveforms
-
-### Contribution Guidelines
-
-- Follow existing code style and naming conventions
-- Add comments for complex logic
-- Update documentation for new features
-- Ensure synthesis completes without critical warnings
-- Test changes in both simulation and (if possible) hardware
-
----
-
-## License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
----
-
 ## Authors
 
-**[Your Name]**  
+**Yash Suthar and Vedh Mungelwar**  
 Department of Electrical Engineering  
 Veermata Jijabai Technological Institute (VJTI)  
 Mumbai, India  
-Contact: [your.email@example.com]
 
 ---
 
@@ -530,7 +444,6 @@ Contact: [your.email@example.com]
 - Research inspired by FPGA-based real-time system design principles
 - Architecture based on hardware-coordinated RISC-V MIMD processors
 - Developed using Xilinx Vivado 2024.2 Design Suite
-- Special thanks to VJTI Department of Electrical Engineering
 
 ---
 
@@ -542,10 +455,6 @@ Contact: [your.email@example.com]
 2. **Non-Pipelined Core**: Single-cycle execution limits maximum clock frequency
 3. **Fixed Thread Count**: Currently supports 4 threads (compile-time constant)
 4. **No Interrupt Preemption**: Tasks run to completion without mid-task interruption
-
-### Planned Improvements
-
-See [Future Work](#future-work) section below.
 
 ---
 
