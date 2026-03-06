@@ -17,7 +17,6 @@ A resource-efficient RISC-V RV32I processor featuring hardware-level task schedu
 - [Performance Benefits](#performance-benefits)
 - [Use Cases](#use-cases)
 - [Contributing](#contributing)
-- [License](#license)
 - [Authors](#authors)
 - [References](#references)
 
@@ -412,10 +411,7 @@ This processor architecture is optimized for:
 
 ## Authors
 
-**Yash Suthar and Vedh Mungelwar**  
-Department of Electrical Engineering  
-Veermata Jijabai Technological Institute (VJTI)  
-Mumbai, India  
+**Yash Suthar and Vedh Mungelwar**    
 
 ---
 
